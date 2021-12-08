@@ -94,10 +94,8 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to `http://40.78.5.86:5601/app/kibana` to check that the installation worked as expected.
 
 To download the playbook and use you complete the following steps:
-- Pull the file from GitHub
-	$ wget https://github.com/aethergnos/refactored-octo-umbrella/blob/main/Ansible/filebeat-playbook.yml
-- SSH into Ansible container and edit `hosts` file
-	$ nano /etc/ansible/hosts
+- Pull the file from GitHub `wget https://github.com/aethergnos/refactored-octo-umbrella/blob/main/Ansible/filebeat-playbook.yml`
+- SSH into Ansible container and edit `hosts` file: `nano /etc/ansible/hosts`
 - Navigate to section `[webservers]` to add web-server IP's, then find or add `[elk]` section to add elk-server IP.
 - Append IP addresses with the following: `ansible_python_interpreter=/usr/bin/python3`
 - Make sure the yml correlates with the targeted machines 
