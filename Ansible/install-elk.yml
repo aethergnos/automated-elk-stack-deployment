@@ -1,0 +1,39 @@
+---
+- name: ELK playbook
+  hosts: elk
+  become: true
+  tasks:
+
+  - name: set vm.max_map_count to 262144 in sysctl
+    become: yes
+    sysctl: 
+      name: vm.max_map_count
+      value: 262144
+      state: present
+  - name: Install docker.io  (state=present is optional)
+    apt:
+      name: docker.io
+      state: present
+      update_cache: yes
+  - name: Install python3-pip
+    apt:
+      name: python3-pip
+      state: present
+  - name: Install docker
+    pip:
+      name: docker
+      state: present
+  - name: Install sebp/elk
+    docker_container:
+      name: sebp
+      image: sebp/elk:761
+      state: started
+      ports:
+       - "5601:5601"
+       - "9200:9200"
+       - "5044:5044"
+      restart_policy: always
+  - name: Start docker on VM restart
+    ansible.builtin.systemd:
+      name: docker
+      enabled: yes
