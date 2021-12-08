@@ -22,21 +22,22 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly secure, in addition to restricting traffic to the network.
-- _TODO: 
+- Load balancers protect against denial-of-service attacks and provide consistent availability to a server. By triggering a fallback to 
+  a different machine, the load balancers can ensure that the server/application stays up. A jump box limits the machines that have access 
+  to other machines on the network, this prevents unauthorized access to the network machines. 
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the network and system logs.
+- Filebeat can be used to analyze and record system logs with relative ease. This data can be collected to monitor any changes or errors in the server. 
+- Metricbeat analyzes metric data and is a bit more versatile than Filebeat, it can monitor web traffic, CPU statistics, memory and can also be used to view relevant Docker information. 
 
-The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
+The configuration details of each machine may be found below:
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Jump Box | Gateway  | 10.0.0.4   | Linux            |
+| Web-1    | App/HTTP | 10.0.0.9   | Linux            |
+| Web-2    | App/HTTP | 10.0.0.10  | Linux            |
+| Elk      | Analytic | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
