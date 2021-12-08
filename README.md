@@ -6,7 +6,7 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the `filebeat-playbook.yml` file may be used to install only certain pieces of it, such as Filebeat.
 
-  `Ansible/filebeat-playbook.yml`
+  `/Ansible/filebeat-playbook.yml`
 
 This document contains the following details:
 - Description of the Topology
@@ -35,51 +35,55 @@ The configuration details of each machine may be found below:
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
 | Jump Box | Gateway  | 10.0.0.4   | Linux            |
-| Web-1    | App/HTTP | 10.0.0.9   | Linux            |
-| Web-2    | App/HTTP | 10.0.0.10  | Linux            |
+| Web-1    | App/DVWA | 10.0.0.9   | Linux            |
+| Web-2    | App/DVWA | 10.0.0.10  | Linux            |
 | Elk      | Analytic | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+Only the DVWA machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+- 73.202.73.57
 
-Machines within the network can only be accessed by _____.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
+Machines within the network can only be accessed by Jump Box.
+- The ELK machine can only be accessed by the Ansible docker container with an IP address of `20.124.177.56`
 
 A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Jump Box | Private IP          | 73.202.73.57         |
+| Web      | No                  | 10.0.0.4             |
+| Elk      | No                  | 20.124.177.56        |
 
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_
+- Ansible allows the configuration of many machines at once or simply making it easier to add a machine to the pool. 
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+- Allowing the VM to use more virtual memory
+- Install `docker` and `python3-pip` from APT
+- Pull image from repository and deploy
+- Enable `docker.service` to make sure it starts on boot
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+/Images/docker-ps.png
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+- Web-1 10.0.0.9
+- Web-2 10.0.0.10
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Filebeat
+- Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Filebeat allows us to collect logs from the servers so any errors that may occur can recorded and accessed by the administrator. 
+- Metricbeat records analytics and statistics such as CPU, memory and traffic. This can be used to manage and oversee the web application.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
