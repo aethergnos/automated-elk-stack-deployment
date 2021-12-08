@@ -2,11 +2,9 @@
 
 The files in this repository were used to configure the network depicted below.
 
-  `/Diagrams/Azure-Web.png`
+![](https://raw.githubusercontent.com/aethergnos/refactored-octo-umbrella/main/Diagrams/Azure-Web.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the `filebeat-playbook.yml` file may be used to install only certain pieces of it, such as Filebeat.
-
-  `/Ansible/filebeat-playbook.yml`
 
 This document contains the following details:
 - Description of the Topology
@@ -93,7 +91,7 @@ SSH into the control node and follow the steps below:
 - Update the `/etc/ansible/hosts` file to include target IP address. 
 - Run the playbook, and navigate to `http://40.78.5.86:5601/app/kibana` to check that the installation worked as expected.
 
-To download the playbook and use you complete the following steps:
+To download the playbook and you can follow these steps:
 - Pull the file from GitHub `wget https://github.com/aethergnos/refactored-octo-umbrella/blob/main/Ansible/filebeat-playbook.yml`
 - SSH into Ansible container and edit `hosts` file: `nano /etc/ansible/hosts`
 - Navigate to section `[webservers]` to add web-server IP's, then find or add `[elk]` section to add elk-server IP.
