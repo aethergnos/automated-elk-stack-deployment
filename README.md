@@ -42,7 +42,7 @@ The configuration details of each machine may be found below:
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the DVWA machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- 73.202.73.57
+- 73.202.73.55
 
 Machines within the network can only be accessed by Jump Box.
 - The ELK machine can only be accessed by the Ansible docker container with an IP address of `20.124.177.56`
@@ -51,7 +51,7 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Private IP          | 73.202.73.57         |
+| Jump Box | Private IP          | 73.202.73.55         |
 | Web      | No                  | 10.0.0.4             |
 | Elk      | No                  | 20.124.177.56        |
 
